@@ -1,5 +1,6 @@
 <script setup>
 import {
+    CpuChipIcon,
     Bars3Icon
 } from '@heroicons/vue/24/outline';
 import { onMounted, ref } from 'vue';
@@ -31,6 +32,9 @@ onMounted(() => {
             <nav class="w-full flex flex-col gap-5 text-white/50">
                 <NavLink to="/" name="Example">
                     <Bars3Icon class="w-10 h-10" />
+                </NavLink>
+                <NavLink to="/nodes" name="Nodes">
+                    <CpuChipIcon class="w-10 h-10" />
                 </NavLink>
             </nav>
 
