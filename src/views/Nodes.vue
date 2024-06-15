@@ -13,8 +13,9 @@ let intervalId
 
 function fetchNodes() {
     fetch(api.NODES_STATUS_ENDPOINT)
-        .then((data) => {
-            nodes.value = data.json()
+        .then((data) => data.json())
+        .then((json) => {
+            nodes.value = json
             loading.value = false
         })
 }
