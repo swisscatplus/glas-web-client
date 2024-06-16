@@ -1,5 +1,14 @@
 <script setup>
+import * as api from "../utils/api";
+
 console.log("Write the page code here...");
+
+fetch(api.WORKFLOWS_ENDPOINT)
+.then((data) => data.json())
+.then((json) => {
+    console.log(json)
+})
+
 </script>
 
 <template>
