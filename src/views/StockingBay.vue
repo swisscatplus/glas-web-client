@@ -1,3 +1,11 @@
+<style scoped>
+
+.selected {
+    background-color: rgb(229 229 229);
+}
+
+</style>
+
 <script setup>
 import {ref, onMounted, onBeforeUnmount} from "vue";
 import * as api from "../utils/api";
@@ -6,7 +14,6 @@ import Loader from "../components/Loader.vue";
 const stockingbay = ref({})
 const loading = ref(true)
 const selected = ref({})
-
 
 let intervalId
 
@@ -20,7 +27,16 @@ function fetchStockingBay() {
 
 }
 
-function selectPod(id) {
+function clearSelected() {
+    const cards = document.querySelectorAll('.card')
+    cards.forEach((_d) => _d.classList.remove("selected"))
+    selected.value = {}
+}
+
+function selectPod(id, e) {
+
+    clearSelected()
+    e.target.closest(".card").classList.add("selected")
     if(id === null) {
         selected.value = {}
         return
@@ -34,6 +50,23 @@ function selectPod(id) {
 }
 
 onMounted(() => {
+    // const cards = document.querySelectorAll('.card')
+
+    // function clearSelected() {
+    //     cards.forEach((_d) => _d.classList.remove("selected"))
+    //     selected.value = {}
+    // }
+
+    // cards.forEach((d) => {
+    //     d.addEventListener('click', (e) => {
+    //         e.stopPropagation()
+            
+    //         clearSelected()
+    //         d.classList.add('selected')
+    //     })
+    //     console.log("event added")
+    // })
+    
     fetchStockingBay()
 
     intervalId = setInterval(() => {
@@ -91,9 +124,9 @@ onBeforeUnmount(() => {
         
         <div class="w-full grid grid-cols-3 gap-5" v-if="!loading">
             <div
-                class="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col hover:bg-neutral-400 hover:cursor-pointer"
+                class="card bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col hover:bg-neutral-400 hover:cursor-pointer"
                 v-for="(id) in Object.keys(stockingbay)"
-                v-on:click="selectPod(stockingbay[id])"
+                v-on:click="selectPod(stockingbay[id], $event)"
             >
                 <div  class="flex mx-auto w-full items-center gap-4 justify-between divide-x-2 divide-inherit">
                     <div class="flex w-1/12 justify-center">
