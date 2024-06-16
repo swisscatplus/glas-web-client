@@ -50,23 +50,6 @@ function selectPod(id, e) {
 }
 
 onMounted(() => {
-    // const cards = document.querySelectorAll('.card')
-
-    // function clearSelected() {
-    //     cards.forEach((_d) => _d.classList.remove("selected"))
-    //     selected.value = {}
-    // }
-
-    // cards.forEach((d) => {
-    //     d.addEventListener('click', (e) => {
-    //         e.stopPropagation()
-            
-    //         clearSelected()
-    //         d.classList.add('selected')
-    //     })
-    //     console.log("event added")
-    // })
-    
     fetchStockingBay()
 
     intervalId = setInterval(() => {
