@@ -36,11 +36,11 @@ function clearSelected() {
 function selectPod(id, e) {
 
     clearSelected()
-    e.target.closest(".card").classList.add("selected")
-    if(id === null) {
+    if(id === null || id === undefined) {
         selected.value = {}
         return
     }
+    e.target.closest(".card").classList.add("selected")
 
     fetch(api.TASK_ENDPOINT + "/" + id[0])
     .then((data) => data.json())
@@ -108,16 +108,16 @@ onBeforeUnmount(() => {
         <div class="w-full grid grid-cols-3 gap-5" v-if="!loading">
             <div
                 class="card bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col hover:bg-neutral-400 hover:cursor-pointer"
-                v-for="(id) in Object.keys(stockingbay)"
-                v-on:click="selectPod(stockingbay[id], $event)"
+                v-for="(pod) in Object.keys(stockingbay)" :key="pod.id"
+                v-on:click="selectPod(stockingbay[pod], $event)"
             >
                 <div  class="flex mx-auto w-full items-center gap-4 justify-between divide-x-2 divide-inherit">
                     <div class="flex w-1/12 justify-center">
-                        <span class="font-semibold">{{ id }}</span>
+                        <span class="font-semibold">{{ pod }}</span>
                     </div>
                     <div class="w-11/12 flex justify-center flex-1">
-                        <span class="font-semibold" v-if="!stockingbay[id]">{{ "-" }}</span>
-                        <span class="font-semibold" v-if="stockingbay[id]">{{ stockingbay[id][0] }}</span>
+                        <span class="font-semibold" v-if="!stockingbay[pod]">{{ "-" }}</span>
+                        <span class="font-semibold" v-if="stockingbay[pod]">{{ stockingbay[pod][0] }}</span>
                     </div>
                 </div>
             </div>
