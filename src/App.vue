@@ -2,7 +2,8 @@
 import {
     CpuChipIcon,
     Bars3Icon,
-    ArchiveBoxArrowDownIcon
+    ArchiveBoxArrowDownIcon,
+    TruckIcon
 } from '@heroicons/vue/24/outline';
 import { onMounted, ref } from 'vue';
 import Emergency from './components/Emergency.vue';
@@ -39,6 +40,9 @@ onMounted(() => {
                 </NavLink>
                 <NavLink to="/stockingbay" name="Stocking Bay">
                     <ArchiveBoxArrowDownIcon class="w-10 h-10" />
+                </NavLink>
+                <NavLink to="/tasks" name="Tasks">
+                    <TruckIcon class="w-10 h-10" />
                 </NavLink>
             </nav>
 
