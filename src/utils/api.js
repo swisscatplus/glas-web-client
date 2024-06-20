@@ -1,9 +1,19 @@
-export const BASE_PORT = 3001;
-export const BASE_URL = `http://127.0.0.1:${BASE_PORT}`;
+import axios from 'axios';
 
-export const ADMIN_GROUP = `${BASE_URL}/admin`;
+export const api = axios.create({
+    baseURL: 'http://127.0.0.1:3000',
+    timeout: 5000,
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    },
+});
 
-export const STOP_ENDPOINT = `${ADMIN_GROUP}/orchestrator/stop`;
-export const START_ENDPOINT = `${ADMIN_GROUP}/orchestrator/start`;
-export const ORCHESTRATOR_STATUS_ENDPOINT = `${ADMIN_GROUP}/orchestrator/status`;
-export const TASK_ENDPOINT = `${ADMIN_GROUP}/task`;
+api.interceptors.response.use(
+    (res) => res,
+    (err) => {
+        if (err.response?.status === 401) {
+            alert('You need to setup the JWT before using this application');
+        }
+    },
+);

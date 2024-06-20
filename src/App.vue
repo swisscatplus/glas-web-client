@@ -1,12 +1,10 @@
 <script setup>
-import {
-    Bars3Icon
-} from '@heroicons/vue/24/outline';
+import { TruckIcon } from '@heroicons/vue/24/outline';
 import { onMounted, ref } from 'vue';
 import Emergency from './components/Emergency.vue';
 import NavLink from './components/NavLink.vue';
 import RunOrchestrator from './components/RunOrchestrator.vue';
-import * as api from './utils/api';
+import { api } from './utils/api';
 
 let orchestratorOnline = ref(false);
 
@@ -15,9 +13,7 @@ function fetchOrchestratorStatus(status) {
 }
 
 onMounted(() => {
-    fetch(api.ORCHESTRATOR_STATUS_ENDPOINT).then((data) => {
-        fetchOrchestratorStatus(data.status === 204);
-    });
+    api.get('/orchestrator/status').then((res) => fetchOrchestratorStatus(res.status === 204));
 });
 </script>
 
@@ -29,8 +25,8 @@ onMounted(() => {
             </RouterLink>
 
             <nav class="w-full flex flex-col gap-5 text-white/50">
-                <NavLink to="/" name="Example">
-                    <Bars3Icon class="w-10 h-10" />
+                <NavLink to="/tasks" name="Tasks">
+                    <TruckIcon class="w-10 h-10" />
                 </NavLink>
             </nav>
 

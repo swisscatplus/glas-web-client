@@ -1,14 +1,12 @@
 <script setup>
-import { STOP_ENDPOINT } from '../utils/api';
+import { api } from '../utils/api';
 
 const { callback } = defineProps(['callback']);
 
 function emergencyStop() {
-    fetch(STOP_ENDPOINT, { method: 'DELETE' })
-        .then((data) => {
-            callback(!(data.status == 204)); // inverse the condition to indicate that the orchestrato is stopped
-        })
-        .catch((e) => console.log(e));
+    api.delete('/orchestrator/stop').then((res) => {
+        callback(!(res.status == 204)); // inverse the condition to indicate that the orchestrato is stopped
+    });
 }
 </script>
 

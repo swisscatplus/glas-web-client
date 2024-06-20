@@ -1,14 +1,12 @@
 <script setup>
-import { START_ENDPOINT } from '../utils/api';
+import { api } from '../utils/api';
 
 const { callback } = defineProps(['callback']);
 
 function runOrchestrator() {
-    fetch(START_ENDPOINT, { method: 'POST' })
-        .then((data) => {
-            callback(data.status == 204);
-        })
-        .catch((e) => console.log(e));
+    api.post('/orchestrator/start').then((res) => {
+        callback(res.status == 204);
+    });
 }
 </script>
 
