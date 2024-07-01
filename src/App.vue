@@ -21,7 +21,7 @@ onMounted(() => {
     <div class="flex h-screen p-10 text-slate-900">
         <aside class="h-full w-60 flex flex-col items-center gap-20 bg-slate-800 rounded-xl">
             <RouterLink to="/" class="pt-8">
-                <img src="/images/logo-2.png" alt="swisscat-logo" class="w-40" />
+                <img src="/images/logo.png" alt="logo" class="w-40" />
             </RouterLink>
 
             <nav class="w-full flex flex-col gap-5 text-white/50">

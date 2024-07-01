@@ -16,7 +16,7 @@ function emergencyStop() {
             class="w-full py-5 gap-5 flex flex-col items-center bg-red-600 rounded-xl text-white hover:cursor-pointer hover:animate-wiggle"
             @click="emergencyStop"
         >
-            <h2 class="capitalize text-2xl font-medium text-center">Panic button</h2>
+            <h2 class="capitalize text-2xl font-medium text-center">E-Stop</h2>
 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
