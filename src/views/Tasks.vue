@@ -31,7 +31,7 @@ function updateTask(task) {
     if (taskIsActive(task.uuid)) {
         runningTasks.value[task.uuid].activeStep = task.current_step;
         runningTasks.value[task.uuid].status = task.state;
-        runningTasks.value[task.uuid].workflow = task.worflow;
+        runningTasks.value[task.uuid].workflow = task.workflow;
     } else {
         addActiveTask(task);
     }

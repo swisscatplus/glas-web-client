@@ -26,7 +26,7 @@ function continueTask(id) {
                 Continue
                 <ForwardIcon class="w-6 h-6" />
             </div>
-            <div v-if="continuing" class="w-full rounded-lg flex items-center justify-center font-bold bg-red-500 h-12 cursor-progress">Continuing</div>
+            <div v-if="continuing" class="w-full rounded-lg flex items-center justify-center font-bold bg-red-500 h-12 cursor-progress">Continuing...</div>
         </div>
         <div class="w-2/3 h-full p-8 flex flex-col gap-4">
             <div class="flex justify-between">
@@ -75,7 +75,7 @@ function continueTask(id) {
                             ></path>
                         </svg>
                         <XMarkIcon v-if="activeStep == i && workflow.steps[activeStep].status == 'ERROR'" />
-                        <ArrowPathIcon v-if="activeStep == i && workflow.steps[activeStep].status == 'RESTARTING'" />
+                        <ArrowPathIcon v-if="activeStep == i && workflow.steps[activeStep].status == 'RESTARTING'" class="animate-spin"/>
                         <span v-if="activeStep != i">{{ i + 1 }}</span>
                     </span>
                     <span
