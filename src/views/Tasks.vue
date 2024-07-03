@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { api } from '../utils/api';
 import Task from '../components/Task.vue';
 
@@ -8,10 +8,14 @@ const TERMINATION_TIMEOUT = 1000;
 
 const runningTasks = ref({});
 
+let intervalId;
+
 const addActiveTask = (task) => {
     runningTasks.value[task.uuid] = {
         workflow: task.workflow,
         activeStep: task.current_step,
+        status: task.state,
+        uuid: task.uuid,
     };
 };
 
@@ -26,6 +30,8 @@ const taskIsActive = (uuid) => {
 function updateTask(task) {
     if (taskIsActive(task.uuid)) {
         runningTasks.value[task.uuid].activeStep = task.current_step;
+        runningTasks.value[task.uuid].status = task.state;
+        runningTasks.value[task.uuid].workflow = task.worflow;
     } else {
         addActiveTask(task);
     }
@@ -59,10 +65,14 @@ function fetchTasks() {
 onMounted(() => {
     fetchTasks();
 
-    setInterval(() => {
+    intervalId = setInterval(() => {
         fetchTasks();
     }, UPDATE_INTERVAL);
 });
+
+onBeforeUnmount(() => {
+    clearInterval(intervalId);
+})
 </script>
 
 <template>
@@ -79,7 +89,8 @@ onMounted(() => {
             :key="data.workflow.id"
             :workflow="data.workflow"
             :activeStep="data.activeStep"
-            :active="true"
+            :status="data.status"
+            :uuid="data.uuid"
         />
     </div>
 </template>
