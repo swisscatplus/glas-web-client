@@ -39,16 +39,6 @@ function terminateTask(uuid) {
     }, TERMINATION_TIMEOUT);
 }
 
-function fetchRunning() {
-    runningTasks.value = {};
-
-    api.get('/task/running').then((res) => {
-        res.data.forEach((task) => {
-            addPendingTask(task);
-        });
-    });
-}
-
 function fetchTasks() {
     api.get('/task/running').then((res) => {
         res.data.forEach((task) => {
@@ -67,7 +57,7 @@ function fetchTasks() {
 }
 
 onMounted(() => {
-    fetchRunning();
+    fetchTasks();
 
     setInterval(() => {
         fetchTasks();
