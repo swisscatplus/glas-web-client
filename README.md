@@ -12,8 +12,8 @@ Before running the client, you need to update the base url of the api target wit
 
 Finaly, to run the client, simply execute the command `$ npm run dev` and your are good to go. The following screent should be visible:
 
-![client home page](images/home.png)
+![client home page](images/home-page.png)
 
 And when a task is running, you sould see the the `Task` page, something like:
 
-![client home page](images/task.png)
+![client home page](images/task-page.png)
