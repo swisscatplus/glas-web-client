@@ -17,3 +17,9 @@ Finaly, to run the client, simply execute the command `$ npm run dev` and your a
 And when a task is running, you sould see the the `Task` page, something like:
 
 ![client home page](images/task-page.png)
+
+## Extension
+
+This client can be extended as wanted for your personnal needs.
+
+First, create a new Vue file in the `views` directory. Then, you need to update the router located in `src/router/index.js` to add the newly created page. Finaly, add a NavLink entry in the `App.vue`. 
